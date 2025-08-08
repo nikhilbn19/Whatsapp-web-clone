@@ -44,7 +44,7 @@ whatsapp-backend/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/whatsapp-web-clone.git
+git clone https://github.com/nikhilbn19/Whatsapp-web-clone.git
 cd whatsapp-web-clone/whatsapp-backend
 ```
 
@@ -61,7 +61,6 @@ Create a `.env` file:
 ```env
 PORT=5000
 MONGO_URI=mongodb+srv://your_mongo_url
-BUSINESS_PHONE=918329446654
 ```
 
 ### 4. Run the server
