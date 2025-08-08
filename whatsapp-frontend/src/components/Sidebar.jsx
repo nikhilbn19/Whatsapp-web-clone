@@ -15,9 +15,7 @@ const Sidebar = ({ setSelectedChat }) => {
   };
 
   return (
-    <div className="w-full md:w-1/3 border-r bg-white flex flex-col">
-      
-      
+    <div className="w-full h-1/2 md:h-full md:w-1/3 border-r bg-white flex flex-col">
       <div className="px-4 py-3 flex items-center justify-between border-b bg-gray-50">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold">

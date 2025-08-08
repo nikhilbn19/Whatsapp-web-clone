@@ -17,8 +17,8 @@ const MessageBubble = ({ message }) => {
   
   return (
     <div className={`flex ${isOutgoing ? 'justify-end' : 'justify-start'} px-2`}>
-      <div className={`max-w-xs sm:max-w-md px-4 py-2 shadow-md ${bubbleStyle}`}>
-        <div className="text-sm">
+      <div className={`w-fit max-w-[80%] sm:max-w-md px-4 py-2 shadow-md break-words ${bubbleStyle}`}>
+       <div className="text-sm whitespace-pre-wrap">
             {typeof message.text === 'string' ? message.text : message.text?.body || '[no text]'}
         </div>
 
