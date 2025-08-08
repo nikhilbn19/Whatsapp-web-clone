@@ -53,12 +53,16 @@ router.post('/send-message', async (req, res) => {
     });
 
     await newMessage.save();
+
+    
+    const io = req.app.get('io');
+    io.emit('newMessage', newMessage);
+
     res.status(201).json(newMessage);
   } catch (error) {
     console.error('Error sending message:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
-
 
 module.exports = router;

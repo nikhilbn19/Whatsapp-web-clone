@@ -2,6 +2,9 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import MessageBubble from './MessageBubble';
 import MessageInput from './MessageInput';
+import { io } from 'socket.io-client';
+
+const socket = io(import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000');
 
 const ChatWindow = ({ selectedChat }) => {
   const [messages, setMessages] = useState([]);
@@ -9,7 +12,8 @@ const ChatWindow = ({ selectedChat }) => {
 
   useEffect(() => {
     if (selectedChat) {
-      axios.get(`http://localhost:5000/api/conversations/${selectedChat._id}`)
+      axios
+        .get(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'}/api/conversations/${selectedChat._id}`)
         .then(res => setMessages(res.data))
         .catch(err => console.error(err));
     }
@@ -19,6 +23,19 @@ const ChatWindow = ({ selectedChat }) => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  useEffect(() => {
+    const handleNewMessage = (msg) => {
+      if (selectedChat && msg.wa_id === selectedChat._id) {
+        setMessages(prev => [...prev, msg]);
+      }
+    };
+
+    socket.on('newMessage', handleNewMessage);
+    return () => {
+      socket.off('newMessage', handleNewMessage);
+    };
+  }, [selectedChat]);
+
   const handleSend = async (text) => {
     const payload = {
       wa_id: selectedChat._id,
@@ -26,7 +43,10 @@ const ChatWindow = ({ selectedChat }) => {
       text
     };
 
-    const res = await axios.post('http://localhost:5000/api/conversations/send-message', payload);
+    const res = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'}/api/conversations/send-message`,
+      payload
+    );
     setMessages(prev => [...prev, res.data]);
   };
 
@@ -50,7 +70,6 @@ const ChatWindow = ({ selectedChat }) => {
         </div>
       </div>
 
-      
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
         {messages.map((msg, index) => (
           <MessageBubble key={msg.message_id || index} message={msg} />
@@ -58,7 +77,6 @@ const ChatWindow = ({ selectedChat }) => {
         <div ref={chatEndRef} />
       </div>
 
-      
       <MessageInput onSend={handleSend} />
     </div>
   );
