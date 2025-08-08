@@ -1,14 +1,33 @@
+import { BsCheck, BsCheckAll } from 'react-icons/bs';
+
 const MessageBubble = ({ message }) => {
   const isOutgoing = message.direction === 'out';
-  const bubbleColor = isOutgoing ? 'bg-green-100' : 'bg-white';
 
+
+  const bubbleStyle = isOutgoing
+    ? 'bg-green-200 text-gray-900 rounded-tl-xl rounded-bl-xl rounded-tr-xl'
+    : 'bg-white text-gray-900 rounded-tr-xl rounded-br-xl rounded-tl-xl';
+
+  const getStatusIcon = (status) => {
+    if (status === 'sent') return <BsCheck className="inline ml-1 text-xs text-gray-500" />;
+    if (status === 'delivered') return <BsCheckAll className="inline ml-1 text-xs text-gray-500" />;
+    if (status === 'read') return <BsCheckAll className="inline ml-1 text-xs text-blue-500" />;
+    return null;
+  };
+  
   return (
-    <div className={`flex ${isOutgoing ? 'justify-end' : 'justify-start'}`}>
-      <div className={`rounded px-4 py-2 max-w-sm shadow ${bubbleColor}`}>
-        <div className="text-sm">{message.text}</div>
-        <div className="text-xs text-gray-400 text-right mt-1">
-          {new Date(message.timestamp * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-          {isOutgoing && ` ✓ ${message.status}`}
+    <div className={`flex ${isOutgoing ? 'justify-end' : 'justify-start'} px-2`}>
+      <div className={`max-w-xs sm:max-w-md px-4 py-2 shadow-md ${bubbleStyle}`}>
+        <div className="text-sm">
+            {typeof message.text === 'string' ? message.text : message.text?.body || '[no text]'}
+        </div>
+
+        <div className="text-xs text-gray-500 text-right mt-1 flex items-center justify-end gap-1">
+          {new Date(message.timestamp * 1000).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
+          {isOutgoing && getStatusIcon(message.status)}
         </div>
       </div>
     </div>
