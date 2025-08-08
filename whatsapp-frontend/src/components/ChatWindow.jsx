@@ -39,9 +39,7 @@ const ChatWindow = ({ selectedChat }) => {
   }
 
   return (
-    <div className="w-full md:w-2/3 flex flex-col bg-gray-100 relative">
-
-      
+    <div className="w-full h-1/2 md:h-full md:w-2/3 flex flex-col bg-gray-100 relative">
       <div className="flex items-center px-4 py-3 bg-white border-b">
         <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold">
           {selectedChat.name?.[0]}
