@@ -49,7 +49,7 @@ whatsapp-frontend/
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/your-username/whatsapp-web-clone.git
+git clone https://github.com/nikhilbn19/Whatsapp-web-clone.git
 cd whatsapp-web-clone/whatsapp-frontend
 ```
 
@@ -64,7 +64,7 @@ npm install
 Create a `.env` file in the root and add:
 
 ```
-VITE_API_BASE_URL=https://your-backend-render-url.onrender.com
+VITE_API_BASE_URL=https://whatsapp-web-clone-f6k9.onrender.com
 ```
 
 ### 4. Run locally
@@ -81,7 +81,7 @@ Frontend will be available at `http://localhost:5173`.
 
 - Connect your GitHub repository to [Vercel](https://vercel.com)
 - Set environment variable in **Project Settings → Environment Variables**:
-  - `VITE_API_BASE_URL=https://your-backend-render-url.onrender.com`
+  - `VITE_API_BASE_URL=https://whatsapp-web-clone-f6k9.onrender.com`
 - Deploy! ✅
 
 ---
