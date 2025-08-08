@@ -1,0 +1,52 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+logs/*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+.vite/
+
+# Vite cache
+.vite/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# VSCode settings
+.vscode/
+
+# IDEs and editors
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# MongoDB dump
+dump/
+*.gz
+
+# Optional: local database files if you ever run MongoDB locally
+/data/db/
