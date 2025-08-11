@@ -120,15 +120,7 @@ npm run dev
 
 ---
 
-## ✅ Evaluation Criteria Checklist
 
-- ✅ Closeness to WhatsApp Web UI
-- ✅ Mobile responsiveness
-- ✅ Well-structured backend APIs
-- ✅ Real-time updates (Bonus ✅)
-- ✅ Clean and readable code
-
----
 
 
 © 2025 WhatsApp Web Clone
